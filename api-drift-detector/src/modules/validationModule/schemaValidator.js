@@ -1,8 +1,15 @@
 import Ajv from "ajv";
+import addFormats from "ajv-formats";
 
-const ajv = new Ajv();
+const ajv = new Ajv({
+  allErrors: true,
+  strict: false
+});
+
+addFormats(ajv);
 
 export function validateResponse(schema, data) {
+
   const validate = ajv.compile(schema);
 
   const valid = validate(data);
@@ -11,4 +18,5 @@ export function validateResponse(schema, data) {
     valid,
     errors: validate.errors || []
   };
+
 }

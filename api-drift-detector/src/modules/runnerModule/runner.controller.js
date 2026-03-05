@@ -4,6 +4,13 @@ export async function runEndpointsController(req, res) {
   try {
     const { baseUrl, endpoints } = req.body;
 
+    if (!baseUrl || !Array.isArray(endpoints)) {
+      return res.status(400).json({
+        success: false,
+        message: "baseUrl and endpoints array are required"
+      });
+    }
+
     const results = await runEndpoints(baseUrl, endpoints);
 
     res.status(200).json({
@@ -12,9 +19,11 @@ export async function runEndpointsController(req, res) {
     });
 
   } catch (error) {
+
     res.status(500).json({
       success: false,
       message: error.message
     });
+
   }
 }

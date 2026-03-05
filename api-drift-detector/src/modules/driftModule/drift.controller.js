@@ -1,10 +1,19 @@
 import { detectDrift } from "./drift.service.js";
 
-export function driftController(req, res) {
-  try {
-    const { validationResult } = req.body;
+export async function driftController(req, res) {
 
-    const result = detectDrift(validationResult);
+  try {
+
+    const { validationResult, reportId } = req.body;
+
+    if (!validationResult) {
+      return res.status(400).json({
+        success: false,
+        message: "validationResult is required"
+      });
+    }
+
+    const result = await detectDrift(validationResult, reportId);
 
     res.json({
       success: true,
@@ -12,9 +21,12 @@ export function driftController(req, res) {
     });
 
   } catch (error) {
+
     res.status(500).json({
       success: false,
       message: error.message
     });
+
   }
+
 }

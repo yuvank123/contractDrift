@@ -1,12 +1,12 @@
 import { executeEndpoint } from "./apiExecutor.js";
 
 export async function runEndpoints(baseUrl, endpoints) {
-  const results = [];
 
-  for (const endpoint of endpoints) {
-    const result = await executeEndpoint(baseUrl, endpoint);
-    results.push(result);
-  }
+  const tasks = endpoints.map(endpoint =>
+    executeEndpoint(baseUrl, endpoint)
+  );
+
+  const results = await Promise.all(tasks);
 
   return results;
 }
