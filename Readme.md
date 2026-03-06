@@ -34,28 +34,6 @@ Store Results
 
 The backend follows a **Modular Monolith Architecture**.
 
-
-src
-│
-├── modules
-│ ├── projectModule
-│ ├── contractModule
-│ ├── runnerModule
-│ ├── validationModule
-│ ├── driftModule
-│ ├── reportsModule
-│ └── checkModule
-│
-├── models
-│ ├── project.model.js
-│ ├── contract.model.js
-│ ├── report.model.js
-│ ├── driftIssue.model.js
-│ └── checkRun.model.js
-│
-└── server.js
-
-
 Each module handles a specific part of the system.
 
 ---
