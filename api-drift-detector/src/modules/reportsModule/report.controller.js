@@ -1,7 +1,7 @@
 import {
   createReport,
   fetchReports,
-  fetchReport
+  fetchReportByProject
 } from "./report.service.js";
 
 export async function createReportController(req, res) {
@@ -40,11 +40,11 @@ export async function getReportsController(req, res) {
 
 export async function getReportController(req, res) {
   try {
-    const report = await fetchReport(req.params.id);
+    const reports = await fetchReportByProject(req.params.id);
 
     res.json({
       success: true,
-      report
+      reports
     });
 
   } catch (error) {

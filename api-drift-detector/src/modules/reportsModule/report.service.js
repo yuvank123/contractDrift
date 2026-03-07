@@ -16,12 +16,12 @@ export async function fetchReports() {
   return reports;
 }
 
-export async function fetchReport(id) {
-  const report = await Report.findById(id);
+export async function fetchReportByProject(projectId) {
+  const reports = await Report.find({ projectId }).sort({ createdAt: -1 });
 
-  if (!report) {
-    throw new Error("Report not found");
+  if (!reports.length) {
+    throw new Error("No reports found for this project");
   }
 
-  return report;
+  return reports;
 }

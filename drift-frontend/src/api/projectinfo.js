@@ -25,3 +25,17 @@ export const getProjectInfo = async () => {
         console.error("Error Getting project Info:", err)
     }
 }
+
+export const getProjectInfoById = async (projectId) => {
+  try {
+    const response = await axios.get(`${API_BASE_URL}/projects/${projectId}`);
+
+    if(!response.status){
+        console.error("Error Getting project Info by ID:", response.statusText);
+    }
+
+    return response.data;
+  } catch (error) {
+    console.error("Error Getting project Info by ID:", error);
+  }
+  }

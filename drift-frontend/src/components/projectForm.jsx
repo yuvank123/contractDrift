@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { postProjectInfo, getProjectInfo } from "../api/projectinfo.js";
 import GetProjects from "./getprojects.jsx";
+import { useNavigate } from "react-router-dom";
 
 const ProjectForm = () => {
+  const navigate = useNavigate();
   const [projects, setProjects] = useState([]);
   const [filteredProjects, setFilteredProjects] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
@@ -46,7 +48,7 @@ const ProjectForm = () => {
     try {
       await postProjectInfo(data);
       await fetchProjects();
-      
+
       setProjectName("");
       setBaseUrl("");
       setContractUrl("");
@@ -59,22 +61,22 @@ const ProjectForm = () => {
 
   return (
     <div className="flex h-screen bg-zinc-950 overflow-hidden">
-      
-  
+
+
       <div className="w-1/2 p-8 overflow-y-auto">
         <div className="max-w-xl">
-          
-         
+
+
           <div className="mb-8">
             <h1 className="text-3xl font-semibold text-white mb-2">Create Project</h1>
             <p className="text-zinc-400">Configure your project settings</p>
           </div>
 
-        
+
           <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-8 shadow-2xl">
             <form onSubmit={handleSubmit}>
 
-             
+
               <div className="mb-6">
                 <label className="block text-sm font-medium text-zinc-300 mb-2">
                   Project Name
@@ -103,7 +105,7 @@ const ProjectForm = () => {
                 />
               </div>
 
-              
+
               <div className="mb-8">
                 <label className="block text-sm font-medium text-zinc-300 mb-2">
                   Contract Path
@@ -118,14 +120,23 @@ const ProjectForm = () => {
                 />
               </div>
 
-              
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-blue-800 disabled:cursor-not-allowed text-white font-medium py-3 px-6 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-zinc-900"
-              >
-                {isSubmitting ? "Creating Project..." : "Create Project"}
-              </button>
+              <div className="flex gap-4">
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="flex-1 bg-blue-600 hover:bg-blue-700 disabled:bg-blue-800 disabled:cursor-not-allowed text-white font-medium py-3 px-6 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-zinc-900"
+                >
+                  {isSubmitting ? "Creating Project..." : "Create Project"}
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => navigate("/parsing-pipeline")}
+                  className="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-zinc-900"
+                >
+                  Use Parsing Pipeline
+                </button>
+              </div>
 
             </form>
           </div>
@@ -133,10 +144,10 @@ const ProjectForm = () => {
         </div>
       </div>
 
-     
+
       <div className="w-1/2 border-l border-zinc-800 flex flex-col">
-        
-      
+
+
         <div className="p-8 pb-6 bg-zinc-950 border-b border-zinc-800">
           <div className="mb-4">
             <h2 className="text-2xl font-semibold text-white mb-2">Projects</h2>
@@ -144,8 +155,8 @@ const ProjectForm = () => {
               {filteredProjects.length} {filteredProjects.length === 1 ? 'project' : 'projects'}
             </p>
           </div>
-          
-          
+
+
           <div className="relative">
             <svg
               className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-zinc-500"
@@ -180,8 +191,8 @@ const ProjectForm = () => {
           </div>
         </div>
 
-       
-        <div 
+
+        <div
           className="flex-1 overflow-y-auto px-8 py-6"
           style={{
             scrollbarWidth: 'none', // Firefox
@@ -193,7 +204,7 @@ const ProjectForm = () => {
               display: none; // Chrome, Safari, Opera
             }
           `}</style>
-          
+
           <GetProjects projects={filteredProjects} />
         </div>
 
