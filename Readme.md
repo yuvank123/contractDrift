@@ -46,28 +46,7 @@ Contract drift happens when:
 
 The backend follows a **Modular Monolith Architecture**.
 
-```
-┌─────────────────────────────────────────────────────────┐
-│                   Express.js Server                     │
-│                                                         │
-│  ┌─────────────┐  ┌─────────────┐  ┌────────────────┐  │
-│  │  Contract   │  │   Runner    │  │   Validation   │  │
-│  │   Module   │  │   Module    │  │    Module      │  │
-│  └─────────────┘  └─────────────┘  └────────────────┘  │
-│                                                         │
-│  ┌─────────────┐  ┌─────────────┐  ┌────────────────┐  │
-│  │    Drift    │  │   Reports   │  │    Project     │  │
-│  │   Module   │  │   Module    │  │    Module      │  │
-│  └─────────────┘  └─────────────┘  └────────────────┘  │
-│                                                         │
-│  ┌──────────────────────────────────────────────────┐   │
-│  │              Check Module (Orchestrator)         │   │
-│  └──────────────────────────────────────────────────┘   │
-└─────────────────────────────────────────────────────────┘
-                          │
-                          ▼
-                    MongoDB (Mongoose)
-```
+<img width="583" height="451" alt="Screenshot 2026-05-21 234221" src="https://github.com/user-attachments/assets/0add9111-e729-4c72-b4ea-319d101d7827" />
 
 ### Why Modular Monolith?
 
