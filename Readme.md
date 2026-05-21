@@ -47,6 +47,7 @@ Contract drift happens when:
 The backend follows a **Modular Monolith Architecture**.
 
 <img width="583" height="451" alt="Screenshot 2026-05-21 234221" src="https://github.com/user-attachments/assets/0add9111-e729-4c72-b4ea-319d101d7827" />
+<img width="673" height="548" alt="Screenshot 2026-05-21 172842" src="https://github.com/user-attachments/assets/74d63475-8a1d-4315-8cf5-8a0d51e6e06c" />
 
 ### Why Modular Monolith?
 
